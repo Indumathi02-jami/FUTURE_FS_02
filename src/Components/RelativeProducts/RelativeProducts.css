@@ -1,0 +1,92 @@
+.relativeproducts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 90vh;
+}
+.relativeproducts h1{
+    color: #171717;
+    font-size: 50px;
+    font-weight: 600;
+}
+.relativeproducts hr{
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+}
+.related-item{
+    margin: 120px 170px;
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+}
+@media(max-width:1280px){
+    .relativeproducts{
+        height: 70vh;
+    }
+    .relativeproducts h1{
+        font-size: 40px;
+    }
+    .relativeproducts hr{
+        width: 160px;
+        height: 4px;
+    }
+    .related-item{
+        gap: 20px;
+        margin-top: 30px;
+    }
+}
+@media(max-width:1024px){
+    .relativeproducts{
+        height: 60vh;
+    }
+    .relativeproducts h1{
+        font-size: 30px;
+    }
+    .relativeproducts hr{
+        width: 120px;
+        height: 3px;
+    }
+    .related-item{
+        gap: 15px;
+        margin-top: 20px;
+    }
+}
+@media(max-width:800px){
+    .relativeproducts{
+        height: 50vh;
+        gap: 6px;
+    }
+    .relativeproducts h1{
+        font-size: 20px;
+    }
+    .relativeproducts hr{
+        width: 100px;
+    }
+    .related-item{
+        gap: 5px;
+    }
+}
+@media(max-width:500px){
+    .relativeproducts {
+        height: 10vh;
+        overflow-y: auto; /* Add this to enable scrolling if needed */
+        padding: 10px;
+    }
+
+    .related-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%; /* Ensure it doesn't overflow */
+    }
+
+    .related-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+}
