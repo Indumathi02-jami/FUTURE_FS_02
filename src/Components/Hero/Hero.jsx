@@ -7,12 +7,7 @@ import './Hero.css'
 const Hero = () => {
   return (
     <div>
-      {/* 🔍 Search Section (outside hero flexbox) */}
-      <div className="hero-search-top">
-        <input type="text" placeholder="Search for Men, Women, Kids..." />
-        <button>Search</button>
-      </div>
-
+    
       {/* Hero Flex Section */}
       <div className='hero'>
         {/* Left Side */}

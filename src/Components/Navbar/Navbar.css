@@ -1,167 +1,218 @@
-.navbar{
+/* Navbar container */
+.navbar {
     display: flex;
-    justify-content: space-around;
-    padding: 16px;
-    box-shadow: 0 1px 3px -2px black;
     align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    position: relative;
+    flex-wrap: wrap;
+    z-index: 100;
 }
-.nav-logo{
+
+/* Logo */
+.nav-logo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-.nav-logo p{
+
+.nav-logo img {
+    width: 50px;
+}
+
+.nav-logo p {
+    font-size: 32px;
+    font-weight: 700;
     color: #171717;
-    font-size: 38px;
-    font-weight: 600;
 }
-.nav-menu{
+
+/* Center wrapper */
+.nav-center {
     display: flex;
     align-items: center;
-    list-style: none;
-    gap: 50px;
-    color: #626262;
-    font-size: 20px;
-    font-weight: 500;
-}
-.nav-menu li{
-    display: flex;
-    flex-direction: column;
-    align-items: center ;
+    gap: 20px;
+    flex: 1;
     justify-content: center;
-    cursor: pointer;
 }
-.nav-menu hr{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: #FF4141;
+
+/* Shop link */
+.shop-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: #171717;
+    text-decoration: none;
 }
-.nav-login{
+
+/* Search bar */
+.nav-search {
     display: flex;
     align-items: center;
-    gap: 45px;
+    gap: 8px;
 }
-.nav-login button{
-    width: 157px;
-    height: 58px;
+
+.nav-search input {
+    width: 300px;
+    padding: 10px 16px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
     outline: none;
-    border: 1x solid #7a7a7a;
-    border-radius: 75px;
-    color: #515151;
-    font-size: 20px;
-    font-weight: 500;
-    background: white;
-    cursor: pointer;
+    font-size: 16px;
+    transition: width 0.3s;
 }
-.nav-login button:active{
+
+.nav-search input:focus {
+    width: 350px;
+    border-color: #FF4141;
+}
+
+.nav-search button {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: #FF4141;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.nav-search button:hover {
+    background-color: #e03636;
+}
+
+/* Login + Cart */
+.nav-login {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+/* Login button */
+.nav-login button {
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    background: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.nav-login button:active {
     background: #f3f3f3;
 }
-.nav-cart-count{
-    width: 22px;
-    height: 22px;
+
+/* Cart */
+.nav-cart {
+    position: relative;
+}
+
+.nav-cart img {
+    width: 35px;
+    cursor: pointer;
+}
+
+.nav-cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -35px;
-    margin-left: -55px;
-    border-radius: 11px;
-    font-size: 14px;
-    background: red;
-    color: white;
 }
-.nav-dropdown{
+
+/* Mobile dropdown icon */
+.nav-dropdown {
     display: none;
+    width: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
-@media(max-width:1280px){
-    .navbar{
-        padding: 12px 50px;
+
+.nav-dropdown.open {
+    transform: rotate(90deg);
+}
+
+/* Mobile menu */
+.nav-menu-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    background: #fff;
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media(max-width: 1024px) {
+    .nav-search input {
+        width: 220px;
     }
-    .nav-logo img{
-        width: 40px;
-    }
-    .nav-logo p{
-        font-size: 25px;
-    }
-    .nav-menu{
-        gap: 30px;
-        font-size: 16px;
-    }
-    .nav-login{
-        gap: 30px;
-    }
-    .nav-login button{
-        width: 120px;
-        height: 45px;
-        font-size: 16px;
-    }
-    .nav-cart-count{
-        margin-left: -40px;
-        font-size: 12px;
+
+    .nav-search input:focus {
+        width: 250px;
     }
 }
-@media(max-width:1024px){
-    .navbar{
-        padding: 12px 30px;
+
+@media(max-width: 800px) {
+    .nav-center {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+        margin: 10px 0;
     }
-    .nav-menu{
-        gap: 25px;
-        font-size: 14px;
+
+    .nav-search input {
+        width: 70%;
     }
-    .nav-login button{
+
+    .nav-dropdown {
+        display: block;
+    }
+
+    .nav-login {
+        gap: 10px;
+    }
+}
+
+@media(max-width: 500px) {
+    .nav-search input {
+        width: 60%;
+    }
+
+    .nav-logo p {
+        font-size: 24px;
+    }
+
+    .nav-login button {
         width: 80px;
         height: 35px;
         font-size: 14px;
     }
-    .nav-login img{
+
+    .nav-cart img {
         width: 30px;
     }
-    .nav-cart-count{
+
+    .nav-cart-count {
         width: 18px;
         height: 18px;
-    }
-}
-
-@media(max-width:800px){
-    .navbar{
-        padding: 10px 0px;
-    }
-    .nav-dropdown{
-        display: block;
-        width: 30px;
-        rotate: -90deg;
-        transition: 0.5s;
-    }
-    .nav-menu{
-        display: none;
-        height: 80x;
-        width: 100%;
-        position: absolute;
-        background-color: white;
-        justify-content: center;
-        top: 50px;
-    }
-    .nav-menu-visible{
-        display: flex;
-    }
-    .nav-dropdown.open{
-        transform: rotate(90deg);
-    }
-}
-@media(max-width:500px){
-    .navbar{
-        padding: 8px 0px;
-        gap: 0;
-    }
-    .nav-logo{
-        transform: scale(0.8);
-    }
-    .nav-menu{
-        height: 70px;
-        top: 50px;
-    }
-    .nav-login{
-        transform: scale(0.);
+        font-size: 10px;
     }
 }

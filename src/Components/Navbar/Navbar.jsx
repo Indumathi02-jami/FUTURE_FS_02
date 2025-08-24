@@ -1,44 +1,83 @@
-import React, { useContext, useRef, useState } from 'react'
-import './Navbar.css'
-import logo from '../Assets/logo.png'
-import cart_icon from '../Assets/cart_icon.png'
-import { Link } from 'react-router-dom'
-import { ShopContext } from '../../Context/ShopContex'
-import nav_drop from '../Assets/dropdown_icon.png'
-
+import React, { useContext, useRef, useState } from 'react';
+import './Navbar.css';
+import logo from '../Assets/logo.png';
+import cart_icon from '../Assets/cart_icon.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShopContext } from '../../Context/ShopContex';
+import nav_drop from '../Assets/dropdown_icon.png';
 
 const Navbar = () => {
-    const [menu, setMenu] = useState("shop");
-    const {getTotalItems} = useContext(ShopContext)
-    const menuRef = useRef();
+    const [menuVisible, setMenuVisible] = useState(false);
+    const [search, setSearch] = useState('');
+    const { getTotalItems } = useContext(ShopContext);
+    const navigate = useNavigate();
 
-    const dropdown_toggle = (e)=>{
-        menuRef.current.classList.toggle('nav-menu-visible');
-        e.target.classList.toggle('open');
+    const toggleMenu = () => {
+        setMenuVisible(!menuVisible);
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const query = search.toLowerCase();
 
+        if (query === 'men') navigate('/mens');
+        else if (query === 'women') navigate('/womens');
+        else if (query === 'kids') navigate('/kids');
+        else alert('No category found!');
 
-  return (
-    <div className='navbar'>
-        <div className="nav-logo">
-            <img src={logo} alt="" />
-            <p>SHOPPER</p>
+        setSearch('');
+    }
+
+    return (
+        <div className="navbar">
+            {/* Left: Logo */}
+            <div className="nav-logo">
+                <img src={logo} alt="Logo" />
+                <p>SHOPPER</p>
+            </div>
+
+            {/* Center: Shop + Search */}
+            <div className="nav-center">
+                <Link className="shop-link" to="/">Shop</Link>
+
+                <form onSubmit={handleSearch} className="nav-search">
+                    <input
+                        type="text"
+                        placeholder="Search category..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            {/* Right: Login + Cart */}
+            <div className="nav-login">
+                <Link to='/login'><button>Login</button></Link>
+                <div className="nav-cart">
+                    <Link to='/cart'><img src={cart_icon} alt="Cart" /></Link>
+                    <div className="nav-cart-count">{getTotalItems()}</div>
+                </div>
+
+                {/* Mobile dropdown icon */}
+                <img
+                    className={`nav-dropdown ${menuVisible ? 'open' : ''}`}
+                    src={nav_drop}
+                    onClick={toggleMenu}
+                    alt="Menu"
+                />
+            </div>
+
+            {/* Optional mobile menu */}
+            {menuVisible && (
+                <ul className="nav-menu-mobile">
+                    <li><Link to='/mens'>Men</Link></li>
+                    <li><Link to='/womens'>Women</Link></li>
+                    <li><Link to='/kids'>Kids</Link></li>
+                </ul>
+            )}
         </div>
-        <img className='nav-dropdown' src={nav_drop} onClick={dropdown_toggle} alt="" />
-        <ul ref={menuRef} className="nav-menu">
-            <li onClick={()=>{setMenu("shop")}} ><Link style={{textDecoration:'none'}} to='/'>Shop</Link> {menu==="shop"?<hr/>:<></>}</li>
-            <li onClick={()=>{setMenu("mens")}}><Link style={{textDecoration:'none'}} to='/mens'>Men</Link> {menu==="mens"?<hr/>:<></>}</li>
-            <li onClick={()=>{setMenu("womens")}}><Link style={{textDecoration:'none'}} to='/womens'>Women</Link> {menu==="womens"?<hr/>:<></>}</li>
-            <li onClick={()=>{setMenu("kids")}}><Link style={{textDecoration:'none'}} to='/kids'>Kids</Link> {menu==="kids"?<hr/>:<></>}</li>
-        </ul>
-        <div className="nav-login">
-            <Link to='/login'><button>Login</button></Link>
-            <Link to='/cart'><img src={cart_icon} alt="" /></Link>
-            <div className="nav-cart-count">{getTotalItems()}</div>
-        </div>
-    </div>
-  )
+    );
 }
 
-export default Navbar
+export default Navbar;
